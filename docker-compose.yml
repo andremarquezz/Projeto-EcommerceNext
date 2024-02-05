@@ -11,16 +11,14 @@ services:
       - .:/app
       - /app/node_modules
     depends_on:
-      - db_user
-      - db_content
+      - database
+
   database:
     image: postgres:16.1
     restart: always
     environment:
-      POSTGRES_DB: db_user
+      POSTGRES_DB: database
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
